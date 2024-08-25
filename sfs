@@ -1,0 +1,2 @@
+#!/bin/bash
+tar --numeric-owner --owner=0 --group=0 -cf - xenon | tar2sqfs -r xenon -f xenon.sfs

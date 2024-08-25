@@ -1,0 +1,10 @@
+# generated files
+
+/initramfs
+/initrd
+/xenon.sfs
+/xenon
+
+# my files [shreyan paul]
+/configuration
+/bins

@@ -1,0 +1,2 @@
+#!/bin/bash
+qemu-system-x86_64 -append "quiet" -accel kvm -m 1G -kernel linux66 -initrd initramfs $@ -hda xenon.sfs
