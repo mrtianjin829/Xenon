@@ -1,12 +1,63 @@
+#!/bin/bash
+
 REPO_PWD=`pwd`
 
-if [ -e $REPO_PWD/configuration ]; then
-    echo "Config file found." 
-    source $REPO_PWD/configuration
-else
-    echo "Configuration file not found!"
-    exit 1
-fi
+check_exists(){
+    if [ ! -e $1 ]; then
+        echo "FATAL: $1 not found! Exiting. "
+        exit 1
+    else
+        echo "OK: $1 found. Proceeding."
+    fi
+}
 
-echo "Note: These required binary files are required for the distro:"
-echo "busybox: Busybox"
+var_exists(){
+    if [ ! "${1+defined}" ]; then
+        echo "FATAL: Configuration/Variable $2 not found! Exiting."
+        exit 1
+    else
+        echo "OK: Configuration/Variable $2 found. Proceeding"
+    fi
+}
+
+check_exists $REPO_PWD/configuration
+source $REPO_PWD/configuration
+
+
+var_exists $REPO_PWD "REPO_PWD"
+var_exists $XENON_BINS "XENON_BINS"
+
+check_exists $XENON_BINS/busybox 
+check_exists $XENON_BINS/linux_kernel
+
+echo
+echo "Assertions done. Making squashfs and initramfs..."
+INITRD="$REPO_PWD/initrd"
+XENON="$REPO_PWD/xenon"
+SRC="$REPO_PWD/src"
+
+
+mkdir -p $INITRD $XENON
+
+echo "Making Initramfs directory:"
+cd $INITRD
+# Begin work on Initrd
+rm -rf *
+cp $XENON_BINS/busybox .
+mkdir -p ./bin
+ln -sf ./busybox ./bin/sh
+cp $SRC/initrd.init ./init
+# End work
+cd -
+
+echo "Making Xenon squashfs directory:"
+cd $XENON
+# Begin work on Xenon Squashfs
+rm -rf *
+cp $SRC/xenon.init ./init
+
+# End work
+cd -
+
+$REPO_PWD/cpio
+$REPO_PWD/sfs

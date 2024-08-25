@@ -1,0 +1,38 @@
+#!/bin/sh
+echo "[bungalow linox] Hello there buddy"
+BUSYBOX=/bin/busybox
+export PATH="/bin:/sbin"
+export TERM="xterm-256color"
+export HOME="/root"
+
+$BUSYBOX --install -s /bin
+
+mount -t tmpfs tmpfs /
+mkdir -p dev proc etc home root sys tmp
+
+echo "[Xenon] Mounting system directories"
+mount -t proc      proc      /proc
+mount -t devtmpfs devtmpfs /dev
+echo "[Xenon] PID: `readlink /proc/self`"
+mount -t sysfs     sysfs     /sys
+mount -t tmpfs     tmpfs     /tmp
+
+echo "[Xenon] Setting up accounts"
+
+touch /etc/group /etc/passwd
+
+addgroup -g 0 root
+adduser -h /root -s /bin/sh -D -G root -u 0 root
+
+addgroup -g 10 users
+chown -R root:users bin etc
+
+adduser -h / -s /bin/sh -D -G users user
+adduser user users
+adduser root users
+
+echo "[Xenon] done. welcome to the system, root."
+hostname xenon
+printf "donkey\ndonkey\n" | passwd user
+
+exec login 

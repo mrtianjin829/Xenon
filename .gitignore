@@ -4,6 +4,7 @@
 /initrd
 /xenon.sfs
 /xenon
+*.tar*
 
 # my files [shreyan paul]
 /configuration

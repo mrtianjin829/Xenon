@@ -1,0 +1,19 @@
+#!/bin/sh
+
+BUSYBOX=/bin/busybox
+export PATH="/bin:/sbin"
+export TERM="xterm-256color"
+export HOME="/root"
+$BUSYBOX mount -t tmpfs tmpfs /
+
+$BUSYBOX --install -s /bin
+
+mkdir -p /dev /proc /xenon_image /xenon_rw /xenon_work /xenon_new
+
+mount -t proc proc /proc
+mount -t devtmpfs devtmpfs /dev
+
+mount -t squashfs /dev/sda /xenon_image
+
+mount -t overlay overlay -o "lowerdir=/xenon_image,upperdir=/xenon_rw,workdir=/xenon_work" /xenon_new
+exec switch_root /xenon_new /init
