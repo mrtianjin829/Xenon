@@ -20,6 +20,10 @@ var_exists(){
     fi
 }
 
+divider(){
+    echo "==========================="
+}
+
 check_exists $REPO_PWD/configuration
 source $REPO_PWD/configuration
 
@@ -27,15 +31,16 @@ source $REPO_PWD/configuration
 var_exists $REPO_PWD "REPO_PWD"
 var_exists $XENON_BINS "XENON_BINS"
 
-check_exists $XENON_BINS/busybox 
+check_exists $XENON_BINS/busybox
 check_exists $XENON_BINS/linux_kernel
 
 echo
 echo "Assertions done. Making squashfs and initramfs..."
+divider
+
 INITRD="$REPO_PWD/initrd"
 XENON="$REPO_PWD/xenon"
 SRC="$REPO_PWD/src"
-
 
 mkdir -p $INITRD $XENON
 
@@ -45,7 +50,7 @@ cd $INITRD
 rm -rf *
 cp $XENON_BINS/busybox .
 mkdir -p ./bin
-ln -sf ./busybox ./bin/sh
+ln -sf ../busybox ./bin/sh
 cp $SRC/initrd.init ./init
 # End work
 cd -
@@ -59,5 +64,9 @@ cp $SRC/xenon.init ./init
 # End work
 cd -
 
+divider
+
 $REPO_PWD/cpio
 $REPO_PWD/sfs
+
+cp $XENON_BINS/linux_kernel $REPO_PWD/kernel

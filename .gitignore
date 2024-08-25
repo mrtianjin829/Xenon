@@ -5,6 +5,7 @@
 /xenon.sfs
 /xenon
 *.tar*
+/kernel
 
 # my files [shreyan paul]
 /configuration
