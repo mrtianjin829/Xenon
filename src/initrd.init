@@ -15,6 +15,5 @@ mount -t devtmpfs devtmpfs /dev
 mount -t squashfs /dev/sda /xenon_image
 mount -t overlay overlay -o "lowerdir=/xenon_image,upperdir=/xenon_rw,workdir=/xenon_work" /xenon_new
 
-sh
 
 exec switch_root /xenon_new /init
