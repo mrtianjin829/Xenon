@@ -1,9 +1,7 @@
 # generated files
 
 /initramfs
-/initrd
 /xenon.sfs
-/xenon
 *.tar*
 /kernel
 

@@ -47,10 +47,9 @@ mkdir -p $INITRD $XENON
 echo "Making Initramfs directory:"
 cd $INITRD
 # Begin work on Initrd
-rm -rf *
 cp $XENON_BINS/busybox .
 mkdir -p ./bin
-ln -sf ../busybox ./bin/sh
+ln -sf /busybox ./bin/sh
 cp $SRC/initrd.init ./init
 # End work
 cd -
@@ -58,7 +57,10 @@ cd -
 echo "Making Xenon squashfs directory:"
 cd $XENON
 # Begin work on Xenon Squashfs
-rm -rf *
+cp $XENON_BINS/busybox .
+mkdir -p ./bin
+ln -sf /busybox ./bin/sh
+
 cp $SRC/xenon.init ./init
 
 # End work
@@ -70,3 +72,4 @@ $REPO_PWD/cpio
 $REPO_PWD/sfs
 
 cp $XENON_BINS/linux_kernel $REPO_PWD/kernel
+rm -rf $XENON $INITRD
