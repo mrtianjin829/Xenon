@@ -1,0 +1,4 @@
+#!/bin/bash
+# !!IMPORTANT!!: All path variables must be suffixed with $REPO_PWD.
+
+XENON_BINS="$REPO_PWD/bins"
