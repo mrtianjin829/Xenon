@@ -60,8 +60,9 @@ cd $XENON
 cp $XENON_BINS/busybox .
 mkdir -p ./bin
 ln -sf /busybox ./bin/sh
-
 cp $SRC/xenon.init ./init
+
+cp -r $SRC/etc/ .
 
 # End work
 cd -
