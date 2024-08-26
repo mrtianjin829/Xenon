@@ -33,7 +33,11 @@ adduser user users
 adduser root users
 
 echo "[Xenon] done. welcome to the system, root."
+echo "[Xenon] User login: user:1234, Root login: root:access"
+echo "Made by shreyan paul"
+
 hostname xenon
-printf "donkey\ndonkey\n" | passwd user
+printf "1234\n1234\n" | passwd user > /dev/null 2> /dev/null
+printf "access\naccess\n" | passwd root > /dev/null 2> /dev/null
 
 exec login 
