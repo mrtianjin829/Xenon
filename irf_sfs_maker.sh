@@ -31,8 +31,11 @@ source $REPO_PWD/configuration
 var_exists $REPO_PWD "REPO_PWD"
 var_exists $XENON_BINS "XENON_BINS"
 
+check_exists $XENON_BINS
 check_exists $XENON_BINS/busybox
 check_exists $XENON_BINS/linux_kernel
+
+mkdir -p $XENON_BINS/extra $XENON_BINS/lib
 
 echo
 echo "Assertions done. Making squashfs and initramfs..."
@@ -61,9 +64,10 @@ cp $XENON_BINS/busybox .
 mkdir -p ./bin
 ln -sf /busybox ./bin/sh
 cp $SRC/xenon.init ./init
-
 cp -r $SRC/etc/ .
 
+cp -r $XENON_BINS/lib .
+cp $XENON_BINS/extra/* ./bin/ 2> /dev/null > /dev/null
 # End work
 cd -
 
