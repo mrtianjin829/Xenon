@@ -65,6 +65,7 @@ mkdir -p ./bin
 ln -sf /busybox ./bin/sh
 cp $SRC/xenon.init ./init
 cp -r $SRC/etc/ .
+cp -r $SRC/root/ .
 
 cp -r $XENON_BINS/lib .
 cp $XENON_BINS/extra/* ./bin/ 2> /dev/null > /dev/null
