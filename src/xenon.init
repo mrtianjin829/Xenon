@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "[bungalow linox] Hello there buddy"
 BUSYBOX=/busybox
 export PATH="/bin:/sbin"
 export TERM="xterm-256color"
@@ -9,6 +8,7 @@ $BUSYBOX --install -s /bin
 
 mkdir -p dev proc etc home root sys tmp
 
+clear
 echo "[Xenon] Mounting system directories"
 mount -t proc      proc      /proc
 mount -t devtmpfs devtmpfs /dev
