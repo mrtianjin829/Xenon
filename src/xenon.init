@@ -38,4 +38,4 @@ hostname xenon
 printf "1234\n1234\n" | passwd user > /dev/null 2> /dev/null
 printf "access\naccess\n" | passwd root > /dev/null 2> /dev/null
 
-exec login 
+/etc/loginloop
