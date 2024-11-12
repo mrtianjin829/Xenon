@@ -1,5 +1,7 @@
 # Xenon
 Toy linux distro (formerly bungalow linux)
+## Screenshot
+![ss](Screenshot.png)
 ## Requirements
 - tar2sqfs
 - cpio
