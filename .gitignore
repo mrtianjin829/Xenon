@@ -5,6 +5,5 @@
 *.tar*
 /kernel
 
-# my files [shreyan paul]
 /configuration
 /bins
