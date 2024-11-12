@@ -6,6 +6,7 @@ Toy linux distro (formerly bungalow linux)
 - QEMU (testing only)
 ## How to build
 - First you need to build the bzImage/Image.gz of the Linux kernel and a statically linked busybox.
+- Linux kernel needs to support overlayfs
 - Then in the repository create a dir named `bins`
 - Then do:
 ```sh
