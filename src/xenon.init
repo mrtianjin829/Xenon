@@ -35,7 +35,7 @@ echo "[Xenon] done. welcome to the system, root."
 echo "[Xenon] Root login: root:access"
 
 hostname xenon
-printf "1234\n1234\n" | passwd user > /dev/null 2> /dev/null
+#printf "1234\n1234\n" | passwd user > /dev/null 2> /dev/null
 printf "access\naccess\n" | passwd root > /dev/null 2> /dev/null
 
 /etc/loginloop
