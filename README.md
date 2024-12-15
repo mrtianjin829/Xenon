@@ -29,3 +29,6 @@ mv path/to/busybox ./bins/busybox
 ## Contribution
 - Reporting a bug --> Issues
 - Bugfix/Feature --> Pull request
+
+## Roadmap
+- ARM64 support
